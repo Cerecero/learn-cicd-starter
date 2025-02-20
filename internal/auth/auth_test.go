@@ -41,7 +41,8 @@ func TestApiKey(t *testing.T) {
 				"Authorization": []string{"ApiKey 12345"},
 			},
 			key:  "12345",
-			error: nil,
+			// error: nil,
+			error: errors.New("malformed authorization header"),
 		},
 	}
 	for _, tt := range tests {
