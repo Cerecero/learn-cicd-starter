@@ -11,20 +11,20 @@ func TestApiKey(t *testing.T) {
 		name    string
 		headers http.Header
 		key     string
-		error    error
+		error   error
 	}{
 		{
 			name:    "No authorization Header",
 			headers: http.Header{},
 			key:     "",
-			error:    ErrNoAuthHeaderIncluded,
+			error:   ErrNoAuthHeaderIncluded,
 		},
 		{
 			name: " Malformed Authorization Header - Missing ApiKey prefix",
 			headers: http.Header{
 				"Authorization": []string{"InvalidKey"},
 			},
-			key:  "",
+			key:   "",
 			error: errors.New("malformed authorization header"),
 		},
 		{
@@ -32,7 +32,7 @@ func TestApiKey(t *testing.T) {
 			headers: http.Header{
 				"Authorization": []string{"ApiKey"},
 			},
-			key:  "",
+			key:   "",
 			error: errors.New("malformed authorization header"),
 		},
 		{
@@ -40,7 +40,7 @@ func TestApiKey(t *testing.T) {
 			headers: http.Header{
 				"Authorization": []string{"ApiKey 12345"},
 			},
-			key:  "12345",
+			key:   "12345",
 			error: nil,
 		},
 	}
